@@ -73,7 +73,7 @@ const question=[
         numb: 8,
         type: "True/False",
         question: "ستنخفض الكمية المطلوبة من السلعة بالرغم من ثبات سعرها",
-        answer: "خطأ",
+        answer: "صح",
         options: [
             "صح",
             "خطأ"
