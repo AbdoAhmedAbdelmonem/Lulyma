@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
     <link rel="icon" href="L-removebg-preview.png" type="image/x-icon">
-    <title>SQL Joins Explained | by Lulyma</title>
+
+    <title>SQL Joins Explained | Lulyma</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +15,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            background: linear-gradient(120deg, #2436ff, #ffa500);
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
@@ -23,7 +24,7 @@
         header {
             text-align: center;
             padding: 30px 20px;
-            background: linear-gradient(120deg, #a18cd1, #fbc2eb);
+            background: linear-gradient(120deg, #c124ff, #ff5a00);
             color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border-bottom-left-radius: 50px;
@@ -49,11 +50,11 @@
         .join-section {
             margin-bottom: 40px;
             padding: 20px;
+            border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .join-section:hover {
-            transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
@@ -92,13 +93,13 @@
         }
 
         .gif-container img:hover {
-            transform: rotate(3deg) scale(1.1);
+            transform: scale(1.06);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: linear-gradient(120deg, #fad0c4, #ff9a9e);
+            background: linear-gradient(120deg, #2436ff, #ffa500);
             color: white;
             font-size: 1rem;
             margin-top: 20px;
@@ -131,7 +132,7 @@
             Combines rows from two tables where there is a match in both tables. Only matching rows are returned.
         </p>
         <div class="gif-container">
-            <img src="inner-join.gif" alt="Inner Join Visualization" />
+            <img src="inner join.gif" alt="Inner Join Visualization" />
         </div>
     </div>
 
@@ -141,7 +142,7 @@
             Returns all rows from the left table, and the matched rows from the right table. Unmatched rows will show NULL.
         </p>
         <div class="gif-container">
-            <img src="left-join.gif" alt="Left Join Visualization" />
+            <img src="left join.gif" alt="Left Join Visualization" />
         </div>
     </div>
 
@@ -151,7 +152,7 @@
             Returns all rows from the right table, and the matched rows from the left table. Unmatched rows will show NULL.
         </p>
         <div class="gif-container">
-            <img src="right-join.gif" alt="Right Join Visualization" />
+            <img src="right join.gif" alt="Right Join Visualization" />
         </div>
     </div>
 
@@ -161,7 +162,7 @@
             Returns all rows from both tables, with NULLs where there is no match.
         </p>
         <div class="gif-container">
-            <img src="full-outer-join.gif" alt="Full Outer Join Visualization" />
+            <img src="Full outer join.gif" alt="Full Outer Join Visualization" />
         </div>
     </div>
 </div>
