@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="L-removebg-preview.png" type="image/x-icon">
-
     <title>SQL Joins Explained | Lulyma</title>
     <style>
         * {
@@ -15,7 +14,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #2436ff, #ffa500);
+            background: linear-gradient(120deg, #029b05, #c124ff);
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
@@ -23,12 +22,42 @@
 
         header {
             text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(120deg, #c124ff, #ff5a00);
+            padding: 20px;
+            background: linear-gradient(120deg, #a18cd1, #fbc2eb);
             color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
+            position: relative;
+        }
+
+        .bg {
+            animation:slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #c124ff 50%, #2436ff 50%, #24ffd7 50%);
+            bottom:0;
+            left:-50%;
+            opacity:.5;
+            position:fixed;
+            right:-50%;
+            top:0;
+            z-index:-1;
+        }
+
+        .bg2 {
+            animation-direction:alternate-reverse;
+            animation-duration:4s;
+        }
+
+        .bg3 {
+            animation-duration:5s;
+        }
+        @keyframes slide {
+            0% {
+                transform:translateX(-25%);
+            }
+            100% {
+                transform:translateX(25%);
+            }
         }
 
         header h1 {
@@ -37,9 +66,38 @@
             animation: fadeInDown 1s ease-in-out;
         }
 
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 130%; /* Adjusted from 80% to 85% to move it further down */
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #6a0572;
+            font-size: 1.1rem;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: #6a0572;
+            color: white;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 100px auto 40px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.85);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -50,11 +108,11 @@
         .join-section {
             margin-bottom: 40px;
             padding: 20px;
-            border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .join-section:hover {
+            border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
@@ -93,13 +151,13 @@
         }
 
         .gif-container img:hover {
-            transform: scale(1.06);
+            transform: scale(1.061);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: linear-gradient(120deg, #2436ff, #ffa500);
+            background: linear-gradient(120deg, #fad0c4, #c124ff);
             color: white;
             font-size: 1rem;
             margin-top: 20px;
@@ -117,22 +175,119 @@
                 transform: translateY(0);
             }
         }
+        .popup2{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 500px;
+            background: linear-gradient(-60deg, #a66125 50%, #c124ff 50%, #ff5a00 50%);
+            border-radius: 6px;
+            padding: 10px 25px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+        .popup2.active{
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .popup2 h2{
+            font-size: 50px;
+            color: #ffffff;
+        }
+        .popup2 .gran{
+            display: inline-block;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin: 4px 0;
+        }
+
+        .popup2 .btn{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #999;
+            margin-top: 10px;
+            padding: 15px 0 7px;
+        }
+
+        .popup2 .btn .info-ok-btn{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 130px;
+            height: 45px;
+            background: #ffa500;
+            border: 2px solid #ffa500;
+            outline: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .popup2 .btn {
+            display: flex;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .popup2 {
+                width: 90%;
+                padding: 10px;
+                overflow: auto;
+
+            }
+
+            .popup2 h2 {
+                font-size: 36px;
+            }
+
+            .popup2 .gran {
+                font-size: 14px;
+            }
+
+            .popup2 .btn .info-ok-btn {
+                width: 100px;
+                height: 40px;
+                font-size: 14px;
+                overflow: auto;
+
+            }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <h1>SQL Joins Simplified</h1>
+    <nav>
+        <a href="https://chameleon-nu.vercel.app/">Home</a>
+        <a href="#" class="popo">About</a>
+    </nav>
 </header>
-
-<div class="container">
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<div id="about" class="container">
+    <h2>About Joins in SQL</h2>
+    <p>
+        Joins in SQL are used to combine data from two or more tables based on a related column. An "Inner Join" retrieves only the rows where there is a match in both tables, while a "Left Join" returns all rows from the left table and the matched rows from the right table, filling unmatched rows with NULL. Conversely, a "Right Join" returns all rows from the right table and matched rows from the left, also filling unmatched rows with NULL. "Full Outer Join" combines the results of both Left and Right Joins, including all unmatched rows from both tables with NULLs where applicable. Joins are essential for relational databases to effectively link and query data across multiple tables.
+    </p>
+</div>
+<div id="home" class="container">
     <div class="join-section">
         <h2>Inner Join</h2>
         <p>
             Combines rows from two tables where there is a match in both tables. Only matching rows are returned.
         </p>
         <div class="gif-container">
-            <img src="inner join.gif" alt="Inner Join Visualization" />
+            <img src="innerJoin_3.gif" alt="Inner Join Visualization" />
         </div>
     </div>
 
@@ -142,7 +297,7 @@
             Returns all rows from the left table, and the matched rows from the right table. Unmatched rows will show NULL.
         </p>
         <div class="gif-container">
-            <img src="left join.gif" alt="Left Join Visualization" />
+            <img src="leftJoin_1.gif" alt="Left Join Visualization" />
         </div>
     </div>
 
@@ -152,7 +307,7 @@
             Returns all rows from the right table, and the matched rows from the left table. Unmatched rows will show NULL.
         </p>
         <div class="gif-container">
-            <img src="right join.gif" alt="Right Join Visualization" />
+            <img src="leftJoin_3.gif" alt="Right Join Visualization" />
         </div>
     </div>
 
@@ -162,14 +317,59 @@
             Returns all rows from both tables, with NULLs where there is no match.
         </p>
         <div class="gif-container">
-            <img src="Full outer join.gif" alt="Full Outer Join Visualization" />
+            <img src="fullOuter_1.gif" alt="Full Outer Join Visualization" />
+        </div>
+    </div>
+
+    <div class="join-section">
+        <h2>Cross Join</h2>
+        <p>
+            A <strong>Cross Join</strong> produces a Cartesian product of the two tables.
+            Every row from the first table is combined with every row from the second table.
+        </p>
+        <div class="gif-container">
+            <img src="crossJoin_1.gif" alt="Cross Join Visualization" />
+        </div>
+    </div>
+
+    <div class="join-section">
+        <h2>Union Join</h2>
+        <p>
+            A <strong>Union Join</strong> combines the results of two SELECT queries, removing duplicate rows by default.
+            Each SELECT query must have the same number of columns, with similar data types.
+        </p>
+        <div class="gif-container">
+            <img src="union_2.gif" alt="Union Join Visualization" />
         </div>
     </div>
 </div>
 
+
 <footer>
     <p>© 2024 SQL Joins Visualization by Lulyma | Designed with Levi❤️</p>
 </footer>
+<div class="popup2">
+    <h2>Page Information</h2>
+    <span class="gran" style="font-weight: bold"> page code : #0604728352 </span>
+    <span class="gran">This webpage is designed to simplify SQL joins with visual aids and engaging descriptions. It demonstrates the most common types of joins and their practical use cases, ensuring an easy learning experience for developers and data enthusiasts.</span>
+    <div class="btn">
+        <button class="info-ok-btn">OK</button>
+    </div>
+</div>
+<script>
+    const main = document.querySelector('.main');
+    const about = document.querySelector('.popo');
+    const popup2 = document.querySelector('.popup2');
+    const ok = document.querySelector('.info-ok-btn');
 
+    about.onclick=()=>{
+        popup2.classList.add('active');
+        main.classList.add('active');
+    };
+    ok.onclick=()=>{
+        popup2.classList.remove('active');
+        main.classList.remove('active');
+    };
+</script>
 </body>
 </html>
